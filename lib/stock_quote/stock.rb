@@ -8,8 +8,7 @@ module StockQuote
   class Price
       attr_accessor :date, :open, :high, :low, :close, :volume
       def initialize(date,open,high,low,close, volume)
-            date = date.split("-")
-            @date = Time.utc(date[2],date[1],date[0].to_i)
+            @date = Date.parse(date)
             @open = open.to_f
             @high = high.to_f
             @low = low.to_f
