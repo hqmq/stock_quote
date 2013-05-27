@@ -1,14 +1,11 @@
 require "stock_quote"
 
 describe StockQuote::Stock do
-  companies = [["aapl", "Apple, Inc."], ["goog", "Google Inc."]]
-  for c in companies
-    puts "Getting a stock quote "+c[1].to_s
-    symbol = c[0]
-    stock = StockQuote::Stock.quote(symbol)
-    it c[0].to_s+" is company "+c[1].to_s do            
-      stock.company.should eql(c[1])
+  companies = [["aapl", "Apple Inc."], ["goog", "Google Inc"]]
+  companies.each do |symbol, company|
+    it "can lookup #{symbol} and find that is #{company}" do
+      stock = StockQuote::Stock.quote(symbol)
+      stock.company.should == company
     end
-    puts stock.inspect
   end
 end
